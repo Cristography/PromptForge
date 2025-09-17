@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* --- THEME & VARIABLES --- */
+:root {
+    --font-family: 'Inter', Arial, sans-serif;
+    --bg-color: #f4f7f9;
+    --surface-color: #ffffff;
+    --nav-bg-color: #fcfdff;
+    --border-color: #e4e7eb;
+    --text-color: #1d2939;
+    --text-color-light: #6c757d;
+    --accent-color: #2563eb;
+    --accent-color-hover: #1d4ed8;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --transition-speed: 0.3s;
+}
+
+/* --- BASE & LAYOUT --- */
+body,
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    /* Grid columns for collapsible nav */
+    grid-template-columns: 320px 1fr;
+    transition: grid-template-columns var(--transition-speed) ease-in-out;
+}
+
+/* Collapsed state for the navigation */
+body.nav-collapsed {
+    grid-template-columns: 80px 1fr;
+}
+
+/* --- COLLAPSIBLE NAVIGATION (#sideNav) --- */
+#sideNav {
+    background-color: var(--nav-bg-color);
+    border-right: 1px solid var(--border-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: width var(--transition-speed) ease-in-out;
+    overflow: hidden;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    flex-shrink: 0;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    margin: 0;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+#navToggleBtn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-color-light);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-speed) ease;
+}
+
+#navToggleBtn:hover {
+    background-color: #f0f0f0;
+    color: var(--text-color);
+}
+
+#navToggleBtn i {
+    transition: transform var(--transition-speed) ease;
+}
+
+/* Search Bar */
+.nav-search {
+    position: relative;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.nav-search i {
+    position: absolute;
+    left: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-light);
+}
+
+#promptSearch {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    transition: all var(--transition-speed) ease;
+}
+
+#promptSearch:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+
+
+/* Accordion Prompt List */
+.nav-list-container {
+    overflow-y: auto;
+    padding: 0 1rem;
+}
+
+.category .category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease;
+}
+
+.category .category-header:hover {
+    background-color: #f0f0f0;
+}
+
+.category h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.category .toggle-icon {
+    font-size: 0.8rem;
+    color: var(--text-color-light);
+    transition: transform 0.3s ease;
+}
+
+.category.open .toggle-icon {
+    transform: rotate(90deg);
+}
+
+.prompt-list {
+    list-style: none;
+    padding-left: 1rem;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.category.open .prompt-list {
+    max-height: 1000px;
+    /* Large enough for content */
+}
+
+.prompt-link {
+    display: block;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.2s ease;
+}
+
+.prompt-link:hover {
+    background-color: #e9ecef;
+}
+
+.prompt-link.active {
+    background-color: var(--accent-color);
+    color: white;
+    font-weight: 500;
+}
+
+/* Styles for collapsed nav state */
+body.nav-collapsed #sideNav {
+    padding-right: 0;
+}
+
+body.nav-collapsed .nav-title,
+body.nav-collapsed .category h3,
+body.nav-collapsed .prompt-link,
+body.nav-collapsed .nav-search input {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+body.nav-collapsed #navToggleBtn i {
+    transform: rotate(180deg);
+}
+
+body.nav-collapsed .nav-search {
+    padding: 0;
+}
+
+body.nav-collapsed .nav-search i {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* --- MAIN CONTENT --- */
+#mainContent {
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.main-content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* Other styles for h2, form, button, toast are fine from previous version */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+#mainContent h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+#promptForm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: auto;
+}
+
+#promptForm.hidden {
+    display: none;
+}
+
+.inline-input {
+    flex: 1 1 150px;
+    min-width: 120px;
+    padding: 0.5em 0.8em;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: all var(--transition-speed) ease-in-out;
+    box-shadow: var(--shadow-sm);
+}
+
+.inline-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent);
+}
+
+#copyBtn {
+    margin-top: 2rem;
+    padding: 0.8em 1.5em;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-speed) ease-in-out;
+    box-shadow: var(--shadow-md);
+}
+
+#copyBtn:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+}
+
+#copyBtn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+#copyBtn.hidden {
+    display: none;
+}
+
+#copyBtn.copied {
+    background-color: #198754;
+    transform: translateY(0);
+}
+
+#toastNotification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    background-color: var(--text-color);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    font-weight: 500;
+}
+
+#toastNotification.show {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    #sideNav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        z-index: 2000;
+        transition: transform 0.3s ease-in-out;
+        width: 300px;
+        /* Fixed width for mobile overlay */
+    }
+
+    body:not(.nav-collapsed) #sideNav {
+        transform: translateX(0);
+        box-shadow: var(--shadow-md);
+    }
+
+    body:not(.nav-collapsed)::after {
+        /* Overlay */
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1999;
+    }
+
+    #navToggleBtn i {
+        transform: rotate(180deg);
+    }
+
+    body:not(.nav-collapsed) #navToggleBtn i {
+        transform: rotate(0deg);
+    }
+
+    /* On mobile, main content doesn't need to be aware of nav state */
+    #mainContent {
+        grid-column: 1 / -1;
+    }
+}

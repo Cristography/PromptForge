@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Prompt Utility - Scalable Navigation</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Icon Library for hamburger/chevron -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <aside id="sideNav" role="navigation" aria-label="Prompt categories and prompts">
+        <div class="nav-header">
+            <h2 class="nav-title">Prompts</h2>
+            <button id="navToggleBtn" aria-label="Toggle Navigation" aria-expanded="true">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="nav-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="promptSearch" placeholder="Search prompts...">
+        </div>
+
+        <div id="navList" class="nav-list-container">
+            <!-- Navigation menu dynamically generated here -->
+        </div>
+    </aside>
+
+    <main id="mainContent" aria-live="polite" aria-label="Prompt editing area">
+        <div class="main-content-wrapper">
+            <h2>Select a prompt from the navigation</h2>
+            <!-- The 'hidden' class controls visibility now, not inline styles -->
+            <form id="promptForm" class="hidden" role="form" aria-describedby="prompt-description">
+                <!-- Prompt text with inline inputs inserted dynamically here -->
+            </form>
+            <button type="button" id="copyBtn" class="hidden">Copy Prompt</button>
+        </div>
+    </main>
+
+    <!-- Toast notification element -->
+    <div id="toastNotification"></div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
