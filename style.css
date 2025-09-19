@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-/* --- THEME & VARIABLES --- */
 :root {
     --font-family: 'Inter', Arial, sans-serif;
     --bg-color: #f4f7f9;
@@ -17,7 +16,6 @@
     --transition-speed: 0.3s;
 }
 
-/* --- BASE & LAYOUT --- */
 body,
 html {
     width: 100%;
@@ -31,24 +29,21 @@ html {
 
 body {
     display: grid;
-    /* Grid columns for collapsible nav */
     grid-template-columns: 320px 1fr;
     transition: grid-template-columns var(--transition-speed) ease-in-out;
 }
 
-/* Collapsed state for the navigation */
 body.nav-collapsed {
     grid-template-columns: 80px 1fr;
 }
 
-/* --- COLLAPSIBLE NAVIGATION (#sideNav) --- */
 #sideNav {
     background-color: var(--nav-bg-color);
     border-right: 1px solid var(--border-color);
     height: 100vh;
     display: flex;
     flex-direction: column;
-    transition: width var(--transition-speed) ease-in-out;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
     overflow: hidden;
 }
 
@@ -68,7 +63,14 @@ body.nav-collapsed {
     transition: opacity 0.2s ease;
 }
 
+/* ✅ --- UPDATED TOGGLE BUTTON STYLES (DESKTOP) --- */
 #navToggleBtn {
+    /* Positioned absolutely to appear inside the nav bar */
+    position: absolute;
+    top: 15px;
+    left: 275px;
+    /* Positioned inside the expanded nav's right edge */
+    z-index: 10;
     background: transparent;
     border: none;
     font-size: 1.2rem;
@@ -76,6 +78,7 @@ body.nav-collapsed {
     cursor: pointer;
     padding: 0.5rem;
     border-radius: var(--radius-md);
+    /* Animate its position as the nav collapses */
     transition: all var(--transition-speed) ease;
 }
 
@@ -85,8 +88,19 @@ body.nav-collapsed {
 }
 
 #navToggleBtn i {
-    transition: transform var(--transition-speed) ease;
+    transition: transform 0.3s ease;
 }
+
+/* Move the button when nav collapses on desktop */
+body.nav-collapsed #navToggleBtn {
+    left: 35px;
+    /* Reposition for collapsed nav */
+}
+
+body.nav-collapsed #navToggleBtn i {
+    transform: rotate(180deg);
+}
+
 
 /* Search Bar */
 .nav-search {
@@ -102,6 +116,7 @@ body.nav-collapsed {
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-color-light);
+    pointer-events: none;
 }
 
 #promptSearch {
@@ -121,11 +136,10 @@ body.nav-collapsed {
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color) 20%, transparent);
 }
 
-
-/* Accordion Prompt List */
 .nav-list-container {
     overflow-y: auto;
     padding: 0 1rem;
+    flex: 1;
 }
 
 .category .category-header {
@@ -147,6 +161,7 @@ body.nav-collapsed {
     font-size: 1rem;
     font-weight: 500;
     white-space: nowrap;
+    transition: opacity 0.2s ease;
 }
 
 .category .toggle-icon {
@@ -170,7 +185,6 @@ body.nav-collapsed {
 
 .category.open .prompt-list {
     max-height: 1000px;
-    /* Large enough for content */
 }
 
 .prompt-link {
@@ -195,11 +209,7 @@ body.nav-collapsed {
     font-weight: 500;
 }
 
-/* Styles for collapsed nav state */
-body.nav-collapsed #sideNav {
-    padding-right: 0;
-}
-
+/* Collapsed Desktop */
 body.nav-collapsed .nav-title,
 body.nav-collapsed .category h3,
 body.nav-collapsed .prompt-link,
@@ -207,23 +217,24 @@ body.nav-collapsed .nav-search input {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-}
-
-body.nav-collapsed #navToggleBtn i {
-    transform: rotate(180deg);
-}
-
-body.nav-collapsed .nav-search {
+    width: 0;
+    margin: 0;
     padding: 0;
 }
 
 body.nav-collapsed .nav-search i {
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: hidden;
 }
 
+body.nav-collapsed .category .toggle-icon {
+    opacity: 0;
+    visibility: hidden;
+}
 
-/* --- MAIN CONTENT --- */
+/* Main Content */
 #mainContent {
     overflow-y: auto;
     height: 100vh;
@@ -235,7 +246,6 @@ body.nav-collapsed .nav-search i {
     padding: 3rem 2rem;
 }
 
-/* Other styles for h2, form, button, toast are fine from previous version */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -346,53 +356,4 @@ body.nav-collapsed .nav-search i {
     transform: translate(-50%, 0);
     opacity: 1;
     visibility: visible;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    body {
-        grid-template-columns: 1fr;
-    }
-
-    #sideNav {
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        transform: translateX(-100%);
-        z-index: 2000;
-        transition: transform 0.3s ease-in-out;
-        width: 300px;
-        /* Fixed width for mobile overlay */
-    }
-
-    body:not(.nav-collapsed) #sideNav {
-        transform: translateX(0);
-        box-shadow: var(--shadow-md);
-    }
-
-    body:not(.nav-collapsed)::after {
-        /* Overlay */
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.4);
-        z-index: 1999;
-    }
-
-    #navToggleBtn i {
-        transform: rotate(180deg);
-    }
-
-    body:not(.nav-collapsed) #navToggleBtn i {
-        transform: rotate(0deg);
-    }
-
-    /* On mobile, main content doesn't need to be aware of nav state */
-    #mainContent {
-        grid-column: 1 / -1;
-    }
 }
