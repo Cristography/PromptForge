@@ -213,16 +213,21 @@ document.addEventListener('DOMContentLoaded', () => {
     copyBtn.addEventListener('click', copyPrompt);
 
     // Close mobile nav when clicking outside
-    document.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768 &&
-            !body.classList.contains('nav-collapsed') &&
-            !e.target.closest('#sideNav') &&
-            e.target.closest('#navToggleBtn') === null) { // ensure clicking the button itself doesn't close it
-            body.classList.add('nav-collapsed');
-            document.body.style.overflow = '';
-            navToggleBtn.setAttribute('aria-expanded', 'false');
+    document.addEventListener('click', (e) => {
+        const sideNav = document.getElementById('sideNav');
+        const navToggleBtn = document.getElementById('navToggleBtn');
+
+        // Only do this on small screens
+        if (
+            window.innerWidth <= 768 &&
+            !sideNav.contains(e.target) &&    // click wasn’t inside the nav
+            !navToggleBtn.contains(e.target)  // click wasn’t on the toggle button
+        ) {
+            document.body.classList.add('nav-collapsed');
+            document.body.style.overflow = ''; // re-enable scrolling
         }
     });
+
 
     // --- DATA FETCHING ---
     fetch("prompts.json")
