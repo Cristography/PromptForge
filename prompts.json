@@ -1,0 +1,254 @@
+[
+    {
+        "category": "Image Generation",
+        "prompts": [
+            {
+                "id": "img-1",
+                "name": "Fantasy Landscape",
+                "prompt": "Create a [style] landscape with a [mainSubject] in the [weather] weather.",
+                "placeholders": {
+                    "style": "fantasy",
+                    "mainSubject": "castle",
+                    "weather": "misty"
+                }
+            },
+            {
+                "id": "img-2",
+                "name": "Sci-Fi Robot",
+                "prompt": "Design a [adjective] robot with a [color] finish on a [background] background.",
+                "placeholders": {
+                    "adjective": "sleek",
+                    "color": "metallic blue",
+                    "background": "dark cityscape"
+                }
+            },
+            {
+                "id": "img-3",
+                "name": "Surreal Portrait",
+                "prompt": "Paint a surreal portrait of a person wearing a [headgear] surrounded by [elements].",
+                "placeholders": {
+                    "headgear": "flower crown",
+                    "elements": "floating clocks"
+                }
+            },
+            {
+                "id": "img-4",
+                "name": "Underwater Scene",
+                "prompt": "Illustrate a [creature] swimming through [plantLife] in a [depth] ocean scene.",
+                "placeholders": {
+                    "creature": "giant squid",
+                    "plantLife": "glowing seaweed",
+                    "depth": "deep"
+                }
+            },
+            {
+                "id": "img-5",
+                "name": "Abstract Art",
+                "prompt": "Create an abstract artwork using [shapes] and [colors] that evokes [emotion].",
+                "placeholders": {
+                    "shapes": "circles and triangles",
+                    "colors": "vibrant reds and blues",
+                    "emotion": "passion"
+                }
+            }
+        ]
+    },
+    {
+        "category": "Story Writing",
+        "prompts": [
+            {
+                "id": "story-1",
+                "name": "Hero's Journey",
+                "prompt": "Write a story about a [protagonistRole] who embarks on a journey to find the [object].",
+                "placeholders": {
+                    "protagonistRole": "young warrior",
+                    "object": "ancient sword"
+                }
+            },
+            {
+                "id": "story-2",
+                "name": "Mystery Thriller",
+                "prompt": "Describe a [setting] where a detective investigates a [crime] that shocked the town.",
+                "placeholders": {
+                    "setting": "foggy city",
+                    "crime": "mysterious disappearance"
+                }
+            },
+            {
+                "id": "story-3",
+                "name": "Sci-Fi Adventure",
+                "prompt": "Outline a tale of a [occupation] traveling through [spacePlace] searching for [item].",
+                "placeholders": {
+                    "occupation": "space explorer",
+                    "spacePlace": "the Andromeda galaxy",
+                    "item": "a lost artifact"
+                }
+            },
+            {
+                "id": "story-4",
+                "name": "Romantic Comedy",
+                "prompt": "Write about two [relationship] who meet in a [setting] and face challenges to be together.",
+                "placeholders": {
+                    "relationship": "college students",
+                    "setting": "small town"
+                }
+            },
+            {
+                "id": "story-5",
+                "name": "Historical Fiction",
+                "prompt": "Tell the story of a [historicalFigure] during the [event] and their struggle for freedom.",
+                "placeholders": {
+                    "historicalFigure": "revolutionary leader",
+                    "event": "war of independence"
+                }
+            }
+        ]
+    },
+    {
+        "category": "Coding Snippets",
+        "prompts": [
+            {
+                "id": "code-1",
+                "name": "Array Sort",
+                "prompt": "Write a [language] function to sort an array of [datatype] in [order] order.",
+                "placeholders": {
+                    "language": "JavaScript",
+                    "datatype": "numbers",
+                    "order": "ascending"
+                }
+            },
+            {
+                "id": "code-2",
+                "name": "API Fetch",
+                "prompt": "Show how to fetch data from a [apiName] API using [method] requests.",
+                "placeholders": {
+                    "apiName": "GitHub",
+                    "method": "GET"
+                }
+            },
+            {
+                "id": "code-3",
+                "name": "Form Validation",
+                "prompt": "Implement form validation for [fieldType] inputs in [language].",
+                "placeholders": {
+                    "fieldType": "email",
+                    "language": "Python"
+                }
+            },
+            {
+                "id": "code-4",
+                "name": "Recursive Function",
+                "prompt": "Write a recursive [language] function to compute the [operation] of a number.",
+                "placeholders": {
+                    "language": "C++",
+                    "operation": "factorial"
+                }
+            },
+            {
+                "id": "code-5",
+                "name": "Database Query",
+                "prompt": "Create a [dbType] query to select all records where [condition].",
+                "placeholders": {
+                    "dbType": "SQL",
+                    "condition": "age > 30"
+                }
+            }
+        ]
+    },
+    {
+        "category": "Marketing Copy",
+        "prompts": [
+            {
+                "id": "marketing-1",
+                "name": "Product Launch",
+                "prompt": "Write a catchy tagline for a [productType] that features [featureHighlight].",
+                "placeholders": {
+                    "productType": "smartphone",
+                    "featureHighlight": "a revolutionary camera"
+                }
+            },
+            {
+                "id": "marketing-2",
+                "name": "Social Media Post",
+                "prompt": "Create a social media post promoting a [event] happening on [date].",
+                "placeholders": {
+                    "event": "summer sale",
+                    "date": "July 1st"
+                }
+            },
+            {
+                "id": "marketing-3",
+                "name": "Email Subject",
+                "prompt": "Suggest an email subject line to increase open rates for [campaignName].",
+                "placeholders": {
+                    "campaignName": "holiday discounts"
+                }
+            },
+            {
+                "id": "marketing-4",
+                "name": "Brand Story",
+                "prompt": "Describe the brand story of a company that values [values] and innovation.",
+                "placeholders": {
+                    "values": "sustainability"
+                }
+            },
+            {
+                "id": "marketing-5",
+                "name": "Call to Action",
+                "prompt": "Write a call to action encouraging users to [action] on the website.",
+                "placeholders": {
+                    "action": "sign up for our newsletter"
+                }
+            }
+        ]
+    },
+    {
+        "category": "Educational Prompts",
+        "prompts": [
+            {
+                "id": "edu-1",
+                "name": "Math Problem",
+                "prompt": "Create a math problem involving the calculation of [operation] of two [units].",
+                "placeholders": {
+                    "operation": "addition",
+                    "units": "fractions"
+                }
+            },
+            {
+                "id": "edu-2",
+                "name": "History Question",
+                "prompt": "Formulate a question about the [event] during the [century].",
+                "placeholders": {
+                    "event": "French Revolution",
+                    "century": "18th"
+                }
+            },
+            {
+                "id": "edu-3",
+                "name": "Science Experiment",
+                "prompt": "Explain how to conduct an experiment showing [phenomenon] in [subject].",
+                "placeholders": {
+                    "phenomenon": "photosynthesis",
+                    "subject": "biology"
+                }
+            },
+            {
+                "id": "edu-4",
+                "name": "Language Exercise",
+                "prompt": "Design a language exercise focusing on the use of [grammarTopic] in sentences.",
+                "placeholders": {
+                    "grammarTopic": "past tense verbs"
+                }
+            },
+            {
+                "id": "edu-5",
+                "name": "Geography Quiz",
+                "prompt": "Construct a quiz question related to the [geographicFeature] in [region].",
+                "placeholders": {
+                    "geographicFeature": "rivers",
+                    "region": "South America"
+                }
+            }
+        ]
+    }
+]
