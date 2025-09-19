@@ -1,81 +1,16 @@
-// (The promptData array remains the same)
-const promptData = [
-    {
-        category: "Image Generation",
-        prompts: [
-            { id: "img-1", name: "Fantasy Landscape", prompt: "Create a [style] landscape with a [mainSubject] in the [weather] weather.", placeholders: { style: "fantasy", mainSubject: "castle", weather: "misty" } },
-            { id: "img-2", name: "Sci-Fi Robot", prompt: "Design a [adjective] robot with a [color] finish on a [background] background.", placeholders: { adjective: "sleek", color: "metallic blue", background: "dark cityscape" } },
-            { id: "img-3", name: "Surreal Portrait", prompt: "Paint a surreal portrait of a person wearing a [headgear] surrounded by [elements].", placeholders: { headgear: "flower crown", elements: "floating clocks" } },
-            { id: "img-4", name: "Underwater Scene", prompt: "Illustrate a [creature] swimming through [plantLife] in a [depth] ocean scene.", placeholders: { creature: "giant squid", plantLife: "glowing seaweed", depth: "deep" } },
-            { id: "img-5", name: "Abstract Art", prompt: "Create an abstract artwork using [shapes] and [colors] that evokes [emotion].", placeholders: { shapes: "circles and triangles", colors: "vibrant reds and blues", emotion: "passion" } }
-        ]
-    },
-    {
-        category: "Story Writing",
-        prompts: [
-            { id: "story-1", name: "Hero's Journey", prompt: "Write a story about a [protagonistRole] who embarks on a journey to find the [object].", placeholders: { protagonistRole: "young warrior", object: "ancient sword" } },
-            { id: "story-2", name: "Mystery Thriller", prompt: "Describe a [setting] where a detective investigates a [crime] that shocked the town.", placeholders: { setting: "foggy city", crime: "mysterious disappearance" } },
-            { id: "story-3", name: "Sci-Fi Adventure", prompt: "Outline a tale of a [occupation] traveling through [spacePlace] searching for [item].", placeholders: { occupation: "space explorer", spacePlace: "the Andromeda galaxy", item: "a lost artifact" } },
-            { id: "story-4", name: "Romantic Comedy", prompt: "Write about two [relationship] who meet in a [setting] and face challenges to be together.", placeholders: { relationship: "college students", setting: "small town" } },
-            { id: "story-5", name: "Historical Fiction", prompt: "Tell the story of a [historicalFigure] during the [event] and their struggle for freedom.", placeholders: { historicalFigure: "revolutionary leader", event: "war of independence" } }
-        ]
-    },
-    {
-        category: "Coding Snippets",
-        prompts: [
-            { id: "code-1", name: "Array Sort", prompt: "Write a [language] function to sort an array of [datatype] in [order] order.", placeholders: { language: "JavaScript", datatype: "numbers", order: "ascending" } },
-            { id: "code-2", name: "API Fetch", prompt: "Show how to fetch data from a [apiName] API using [method] requests.", placeholders: { apiName: "GitHub", method: "GET" } },
-            { id: "code-3", name: "Form Validation", prompt: "Implement form validation for [fieldType] inputs in [language].", placeholders: { fieldType: "email", language: "Python" } },
-            { id: "code-4", name: "Recursive Function", prompt: "Write a recursive [language] function to compute the [operation] of a number.", placeholders: { language: "C++", operation: "factorial" } },
-            { id: "code-5", name: "Database Query", prompt: "Create a [dbType] query to select all records where [condition].", placeholders: { dbType: "SQL", condition: "age > 30" } }
-        ]
-    },
-    {
-        category: "Marketing Copy",
-        prompts: [
-            { id: "marketing-1", name: "Product Launch", prompt: "Write a catchy tagline for a [productType] that features [featureHighlight].", placeholders: { productType: "smartphone", featureHighlight: "a revolutionary camera" } },
-            { id: "marketing-2", name: "Social Media Post", prompt: "Create a social media post promoting a [event] happening on [date].", placeholders: { event: "summer sale", date: "July 1st" } },
-            { id: "marketing-3", name: "Email Subject", prompt: "Suggest an email subject line to increase open rates for [campaignName].", placeholders: { campaignName: "holiday discounts" } },
-            { id: "marketing-4", name: "Brand Story", prompt: "Describe the brand story of a company that values [values] and innovation.", placeholders: { values: "sustainability" } },
-            { id: "marketing-5", name: "Call to Action", prompt: "Write a call to action encouraging users to [action] on the website.", placeholders: { action: "sign up for our newsletter" } }
-        ]
-    },
-    {
-        category: "Educational Prompts",
-        prompts: [
-            { id: "edu-1", name: "Math Problem", prompt: "Create a math problem involving the calculation of [operation] of two [units].", placeholders: { operation: "addition", units: "fractions" } },
-            { id: "edu-2", name: "History Question", prompt: "Formulate a question about the [event] during the [century].", placeholders: { event: "French Revolution", century: "18th" } },
-            { id: "edu-3", name: "Science Experiment", prompt: "Explain how to conduct an experiment showing [phenomenon] in [subject].", placeholders: { phenomenon: "photosynthesis", subject: "biology" } },
-            { id: "edu-4", name: "Language Exercise", prompt: "Design a language exercise focusing on the use of [grammarTopic] in sentences.", placeholders: { grammarTopic: "past tense verbs" } },
-            { id: "edu-5", name: "Geography Quiz", prompt: "Construct a quiz question related to the [geographicFeature] in [region].", placeholders: { geographicFeature: "rivers", region: "South America" } }
-        ]
-    }
-];
+let promptData = [];
+let toastTimeout; // Can stay global
 
+// --- All functions can remain here, as they are just definitions ---
 
-// --- DOM ELEMENT REFERENCES ---
-const body = document.body;
-const navListContainer = document.getElementById('navList');
-const mainContent = document.getElementById('mainContent');
-const promptForm = document.getElementById('promptForm');
-const copyBtn = document.getElementById('copyBtn');
-const toast = document.getElementById('toastNotification');
-const navToggleBtn = document.getElementById('navToggleBtn');
-const searchInput = document.getElementById('promptSearch');
-let toastTimeout;
-
-// --- NAVIGATION & UI LOGIC ---
-
-// 1. Build the dynamic navigation with accordions
 function buildNavigation() {
-    navListContainer.innerHTML = ''; // Clear nav
+    const navListContainer = document.getElementById('navList'); // Get it inside the function
+    navListContainer.innerHTML = '';
 
     promptData.forEach(category => {
-        // Create category container
         const catElem = document.createElement('div');
         catElem.className = 'category';
 
-        // Create accordion header
         const header = document.createElement('div');
         header.className = 'category-header';
         header.innerHTML = `
@@ -87,7 +22,6 @@ function buildNavigation() {
         });
         catElem.appendChild(header);
 
-        // Create list of prompts
         const ul = document.createElement('ul');
         ul.className = 'prompt-list';
         category.prompts.forEach(prompt => {
@@ -107,10 +41,10 @@ function buildNavigation() {
     });
 }
 
-// 2. Handle prompt selection
 function onPromptClick(event) {
     event.preventDefault();
     const clickedLink = event.currentTarget;
+    const body = document.body;
 
     document.querySelectorAll('.prompt-link.active').forEach(el => el.classList.remove('active'));
     clickedLink.classList.add('active');
@@ -126,21 +60,22 @@ function onPromptClick(event) {
         showPrompt(selectedPrompt);
     }
 
-    // On mobile, collapse nav after selection
     if (window.innerWidth <= 768) {
         body.classList.add('nav-collapsed');
+        document.body.style.overflow = '';
     }
 }
 
-// 3. Render the selected prompt in the main area
 function showPrompt(promptObj) {
-    // This function is the same as the previous version
     if (!promptObj) return;
+    const mainContent = document.getElementById('mainContent');
+    const promptForm = document.getElementById('promptForm');
+    const copyBtn = document.getElementById('copyBtn');
 
     promptForm.classList.remove('hidden', 'fade-in');
     copyBtn.classList.remove('hidden');
 
-    void promptForm.offsetWidth; // Reflow to restart animation
+    void promptForm.offsetWidth;
     promptForm.classList.add('fade-in');
 
     promptForm.innerHTML = '';
@@ -171,13 +106,26 @@ function showPrompt(promptObj) {
     copyBtn.dataset.promptText = promptText;
 }
 
-// 4. Handle navigation toggle (collapse/expand)
 function toggleNavigation() {
-    body.classList.toggle('nav-collapsed');
+    const body = document.body;
+    const navToggleBtn = document.getElementById('navToggleBtn'); // Get fresh reference
+
+    if (window.innerWidth <= 768) {
+        const isCollapsed = body.classList.toggle('nav-collapsed');
+        navToggleBtn.setAttribute('aria-expanded', !isCollapsed);
+        if (isCollapsed) {
+            document.body.style.overflow = '';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+    } else {
+        body.classList.toggle('nav-collapsed');
+    }
 }
 
-// 5. Filter prompts based on search input
+
 function filterPrompts() {
+    const searchInput = document.getElementById('promptSearch');
     const searchTerm = searchInput.value.toLowerCase();
 
     document.querySelectorAll('.category').forEach(catElem => {
@@ -195,10 +143,8 @@ function filterPrompts() {
             }
         });
 
-        // Show/hide the entire category based on whether it has matches
         if (categoryHasVisiblePrompts) {
             catElem.style.display = 'block';
-            // If searching, auto-expand the category to show results
             if (searchTerm.length > 0) {
                 catElem.classList.add('open');
             }
@@ -206,15 +152,16 @@ function filterPrompts() {
             catElem.style.display = 'none';
         }
 
-        // if search is cleared, remove the forced-open class
         if (searchTerm.length === 0) {
             catElem.classList.remove('open');
         }
     });
 }
 
-// 6. Copy and Toast logic (same as previous version)
 function copyPrompt() {
+    const promptForm = document.getElementById('promptForm');
+    const copyBtn = document.getElementById('copyBtn');
+
     if (promptForm.classList.contains('hidden')) return;
     const template = copyBtn.dataset.promptText;
     if (!template) return;
@@ -244,22 +191,56 @@ function copyPrompt() {
 }
 
 function showToast(message) {
+    const toast = document.getElementById('toastNotification');
     clearTimeout(toastTimeout);
     toast.textContent = message;
     toast.classList.add('show');
     toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// --- INITIALIZATION & EVENT LISTENERS ---
-document.addEventListener('DOMContentLoaded', () => {
-    buildNavigation();
 
-    // Set initial nav state based on screen size
+// --- ✅ INITIALIZATION & EVENT LISTENERS MOVED HERE ---
+document.addEventListener('DOMContentLoaded', () => {
+    // --- DOM ELEMENT REFERENCES ---
+    const body = document.body;
+    const navToggleBtn = document.getElementById('navToggleBtn');
+    const searchInput = document.getElementById('promptSearch');
+    const copyBtn = document.getElementById('copyBtn');
+
+    // --- EVENT LISTENERS ---
+    navToggleBtn.addEventListener('click', toggleNavigation);
+    searchInput.addEventListener('input', filterPrompts);
+    copyBtn.addEventListener('click', copyPrompt);
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', function (e) {
+        if (window.innerWidth <= 768 &&
+            !body.classList.contains('nav-collapsed') &&
+            !e.target.closest('#sideNav') &&
+            e.target.closest('#navToggleBtn') === null) { // ensure clicking the button itself doesn't close it
+            body.classList.add('nav-collapsed');
+            document.body.style.overflow = '';
+            navToggleBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // --- DATA FETCHING ---
+    fetch("prompts.json")
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            promptData = data;
+            buildNavigation();
+        })
+        .catch(error => {
+            console.error("Failed to load prompts:", error);
+            showToast("Error loading prompts. Check console.", true);
+        });
+
+    // Set initial nav state for mobile
     if (window.innerWidth <= 768) {
         body.classList.add('nav-collapsed');
     }
 });
-
-navToggleBtn.addEventListener('click', toggleNavigation);
-searchInput.addEventListener('input', filterPrompts);
-copyBtn.addEventListener('click', copyPrompt);
