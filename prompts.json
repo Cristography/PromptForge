@@ -4,51 +4,89 @@
         "prompts": [
             {
                 "id": "img-1",
-                "name": "Fantasy Landscape",
-                "prompt": "Create a [style] landscape with a [mainSubject] in the [weather] weather.",
+                "name": "General",
+                "prompt": "Create an image with content: [content], shot type: [shot_type], color theme: [color_theme], lighting: [lighting], and vibe: [vibe].",
                 "placeholders": {
-                    "style": "fantasy",
-                    "mainSubject": "castle",
-                    "weather": "misty"
+                    "content": "",
+                    "shot_type": "",
+                    "color_theme": "",
+                    "lighting": "",
+                    "vibe": ""
                 }
             },
             {
                 "id": "img-2",
-                "name": "Sci-Fi Robot",
-                "prompt": "Design a [adjective] robot with a [color] finish on a [background] background.",
+                "name": "Portrait/Character Design",
+                "prompt": "Create a portrait with subject: [subject], expression: [expression], pose: [pose], clothing: [clothing], background: [background], shot type: [shot_type], color theme: [color_theme], lighting: [lighting], and vibe: [vibe].",
                 "placeholders": {
-                    "adjective": "sleek",
-                    "color": "metallic blue",
-                    "background": "dark cityscape"
+                    "subject": "",
+                    "expression": "",
+                    "pose": "",
+                    "clothing": "",
+                    "background": "",
+                    "shot_type": "",
+                    "color_theme": "",
+                    "lighting": "",
+                    "vibe": ""
                 }
             },
             {
                 "id": "img-3",
-                "name": "Surreal Portrait",
-                "prompt": "Paint a surreal portrait of a person wearing a [headgear] surrounded by [elements].",
+                "name": "Landscape/Environment",
+                "prompt": "Create a landscape located at [location] during [time_of_day], season: [season], weather: [weather], with color theme: [color_theme], lighting: [lighting], vibe: [vibe], and composition: [composition].",
                 "placeholders": {
-                    "headgear": "flower crown",
-                    "elements": "floating clocks"
+                    "location": "",
+                    "time_of_day": "",
+                    "season": "",
+                    "weather": "",
+                    "color_theme": "",
+                    "lighting": "",
+                    "vibe": "",
+                    "composition": ""
                 }
             },
             {
                 "id": "img-4",
-                "name": "Underwater Scene",
-                "prompt": "Illustrate a [creature] swimming through [plantLife] in a [depth] ocean scene.",
+                "name": "Product/Marketing Image",
+                "prompt": "Create a product image for [product_type] with features: [product_features], background: [background], composition: [composition], color theme: [color_theme], lighting: [lighting], vibe: [vibe], intended for: [intended_use].",
                 "placeholders": {
-                    "creature": "giant squid",
-                    "plantLife": "glowing seaweed",
-                    "depth": "deep"
+                    "product_type": "",
+                    "product_features": "",
+                    "background": "",
+                    "composition": "",
+                    "color_theme": "",
+                    "lighting": "",
+                    "vibe": "",
+                    "intended_use": ""
                 }
             },
             {
                 "id": "img-5",
-                "name": "Abstract Art",
-                "prompt": "Create an abstract artwork using [shapes] and [colors] that evokes [emotion].",
+                "name": "Fantasy/Concept Art",
+                "prompt": "Create a fantasy scene with description: [scene_description], characters: [characters_present], world style: [world_style], color theme: [color_theme], lighting: [lighting], action: [action_or_event], vibe: [vibe], composition: [composition].",
                 "placeholders": {
-                    "shapes": "circles and triangles",
-                    "colors": "vibrant reds and blues",
-                    "emotion": "passion"
+                    "scene_description": "",
+                    "characters_present": "",
+                    "world_style": "",
+                    "color_theme": "",
+                    "lighting": "",
+                    "action_or_event": "",
+                    "vibe": "",
+                    "composition": ""
+                }
+            },
+            {
+                "id": "img-6",
+                "name": "Infographic/Diagram",
+                "prompt": "Create an infographic on topic: [topic], data points: [data_points], icon style: [icon_style], layout: [layout], color theme: [color_theme], background: [background], and vibe: [vibe].",
+                "placeholders": {
+                    "topic": "",
+                    "data_points": [],
+                    "icon_style": "",
+                    "layout": "",
+                    "color_theme": "",
+                    "background": "",
+                    "vibe": ""
                 }
             }
         ]
